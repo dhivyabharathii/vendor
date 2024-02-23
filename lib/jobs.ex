@@ -109,16 +109,25 @@
         :error -> nil
       end
     end
+    def job_and_latency do
+      "final1.json"
+      |> read()
+      |> Jason.decode!()
+      |> filter_updates()
+      |> calculate_time_difference()
+    end
   end
 
 
 
-  # Jobs.format_file("v1_jobs_1h.txt","output.txt")
-  # Jobs.write_lines("output.txt","final1.json")
-  file_path = "final1.json"
-  {:ok, file_content} = Jobs.read(file_path)
-  updates = Jason.decode!(file_content)
-  filtered_updates = Jobs.filter_updates(updates)
-  time_difference=Jobs.calculate_time_difference(filtered_updates)
-  IO.inspect(time_difference)
-  IO.inspect(filtered_updates)
+
+
+  # # Jobs.format_file("v1_jobs_1h.txt","output.txt")
+  # # Jobs.write_lines("output.txt","final1.json")
+  # file_path = "final1.json"
+  # {:ok, file_content} = Jobs.read(file_path)
+  # updates = Jason.decode!(file_content)
+  # filtered_updates = Jobs.filter_updates(updates)
+  # time_difference=Jobs.calculate_time_difference(filtered_updates)
+  # IO.inspect(time_difference)
+  # IO.inspect(filtered_updates)
